@@ -1,0 +1,51 @@
+name: flowvahub_test
+description: "A new Flutter project."
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.2
+  flutter_svg: ^2.2.3
+  google_fonts: ^6.3.3
+  supabase_flutter: ^2.10.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/svgs/
+
+
+
+  fonts:
+    - family: Manrope
+      fonts:
+         - asset: fonts/Manrope-Bold.ttf
+         - asset: fonts/Manrope-ExtraBold.ttf
+         - asset: fonts/Manrope-ExtraLight.ttf
+         - asset: fonts/Manrope-Light.ttf
+         - asset: fonts/Manrope-Medium.ttf
+         - asset: fonts/Manrope-Regular.ttf
+         - asset: fonts/Manrope-SemiBold.ttf
+
+
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/to/font-from-package
