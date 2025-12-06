@@ -21,7 +21,7 @@ class AuthProvider with ChangeNotifier {
       _loading = false;
       notifyListeners();
 
-      return response.user != null;
+      return response.data != null;
     } catch (e) {
       _loading = false;
       notifyListeners();
@@ -42,7 +42,7 @@ class AuthProvider with ChangeNotifier {
       _loading = false;
       notifyListeners();
 
-      return response.user != null;
+      return response.data != null;
     } catch (e) {
       _loading = false;
       notifyListeners();

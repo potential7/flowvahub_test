@@ -1,36 +1,62 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+
+class AuthResult {
+  final AuthResponse? data;
+  final String? error;
+
+  AuthResult({this.data, this.error});
+}
+
 class AuthService {
   final SupabaseClient _supabase = Supabase.instance.client;
 
-
-  Future<AuthResponse> signUpWithEmailPassword({
+  Future<AuthResult> signUpWithEmailPassword({
     required String email,
     required String password,
   }) async {
-    return await _supabase.auth.signUp(email: email, password: password);
+    try {
+      final res = await _supabase.auth.signUp(
+        email: email,
+        password: password,
+      );
+      return AuthResult(data: res, error: null);
+    } on AuthException catch (e) {
+      return AuthResult(data: null, error: e.message);
+    } catch (e) {
+      return AuthResult(
+          data: null, error: "Something went wrong. Please try again.");
+    }
   }
 
 
-  Future<AuthResponse> signInWithEmailPassword({
+  Future<AuthResult> signInWithEmailPassword({
     required String email,
     required String password,
   }) async {
-    return await _supabase.auth.signInWithPassword(
-      email: email,
-      password: password,
-    );
+    try {
+      final res = await _supabase.auth.signInWithPassword(
+        email: email,
+        password: password,
+      );
+      return AuthResult(data:  res, error: null);
+    } on AuthException catch (e) {
+      return AuthResult(
+       data:  null, error:  e.message
+      );
+    } catch (e) {
+      return AuthResult(
+        data: null, error: "Something went wrong. Please try again."
+      );
+    }
   }
 
-
-Future<void> signOut() async{
+  Future<void> signOut() async {
     await _supabase.auth.signOut();
-}
+  }
 
-String? getCurrentUserEmail() {
+  String? getCurrentUserEmail() {
     final session = _supabase.auth.currentSession;
-    final currentUser = session?.user;
-    return currentUser?.email;
-}
-
+    return session?.user.email;
+  }
 }

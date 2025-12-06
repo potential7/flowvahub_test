@@ -45,13 +45,13 @@ class _SignupState extends State<Signup> {
 
     setState(() => loading = true);
 
-    final success = await auth.signUp(email: email, password: password);
+    final result = await auth.signUp(email: email, password: password);
 
     if (!mounted) return;
 
     setState(() => loading = false);
 
-    if (success) {
+    if (result) {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text("Signup successful!")));
